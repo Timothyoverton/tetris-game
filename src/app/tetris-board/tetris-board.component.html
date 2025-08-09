@@ -1,0 +1,57 @@
+<div class="game-container" *ngIf="gameState">
+  <div class="game-info">
+    <div class="score-panel">
+      <h3>Score: {{ gameState.score }}</h3>
+      <h4>Level: {{ gameState.level }}</h4>
+      <h4>Lines: {{ gameState.lines }}</h4>
+    </div>
+    
+    <div class="next-piece" *ngIf="gameState.nextPiece">
+      <h4>Next:</h4>
+      <div class="next-piece-preview">
+        <div class="next-piece-row" *ngFor="let row of gameState.nextPiece.shape; let y = index">
+          <div class="next-piece-cell" 
+               *ngFor="let cell of row; let x = index"
+               [ngStyle]="{ 
+                 'background-color': cell ? gameState.nextPiece!.color : 'transparent',
+                 'border': cell ? '1px solid #333' : 'none'
+               }">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="game-board">
+    <div class="board-row" *ngFor="let row of getRange(20); let rowIndex = index">
+      <div class="board-cell" 
+           *ngFor="let col of getRange(10); let colIndex = index"
+           [ngStyle]="getCellStyle(rowIndex, colIndex)">
+      </div>
+    </div>
+    
+    <div class="game-overlay" *ngIf="gameState.isGameOver">
+      <h2>Game Over!</h2>
+      <button (click)="startGame()" class="play-btn">Play Again</button>
+    </div>
+    
+    <div class="game-overlay" *ngIf="gameState.isPaused && !gameState.isGameOver">
+      <h2>Paused</h2>
+      <button (click)="pauseGame()" class="play-btn">Resume</button>
+    </div>
+  </div>
+
+  <div class="game-controls">
+    <h4>Controls:</h4>
+    <p>← → Move</p>
+    <p>↓ Soft Drop</p>
+    <p>↑ Rotate</p>
+    <p>Space: Hard Drop</p>
+    <p>P: Pause</p>
+    
+    <div class="control-buttons">
+      <button (click)="startGame()" class="control-btn">New Game</button>
+      <button (click)="pauseGame()" class="control-btn">{{ gameState.isPaused ? 'Resume' : 'Pause' }}</button>
+    </div>
+  </div>
+</div>
