@@ -16,7 +16,7 @@ A fun and colorful Tetris game designed specifically for kids (ages 5-8), featur
 
 ## 🚀 Play Online
 
-Visit the live game at: `https://YOUR_USERNAME.github.io/tetris-game/`
+**🎮 [PLAY NOW: https://timothyoverton.github.io/tetris-game/](https://timothyoverton.github.io/tetris-game/)**
 
 ## 🛠️ Development
 
