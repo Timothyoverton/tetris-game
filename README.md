@@ -1,27 +1,74 @@
-# TetrisGame
+# 🎮 Colorful Tetris for Kids! ✨
+
+A fun and colorful Tetris game designed specifically for kids (ages 5-8), featuring:
+- 🌈 Bright, colorful tetromino pieces
+- 💥 Explosive animations when lines are cleared  
+- 🎯 Kid-friendly interface with large, colorful buttons
+- ⌨️ Simple keyboard controls
+- 🎨 Beautiful gradient backgrounds and smooth animations
+
+## 🕹️ How to Play
+
+- **Arrow Keys**: Move pieces left/right and down
+- **Up Arrow**: Rotate pieces
+- **Spacebar**: Drop piece instantly
+- **P**: Pause/Resume game
+
+## 🚀 Play Online
+
+Visit the live game at: `https://YOUR_USERNAME.github.io/tetris-game/`
+
+## 🛠️ Development
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.7.
 
-## Development server
+### Prerequisites
+- Node.js (recommend using Node 16 or earlier due to legacy Angular version)
+- npm
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+### Running Locally
 
-## Code scaffolding
+```bash
+# Install dependencies
+npm install --legacy-peer-deps
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+# Start development server (use legacy OpenSSL provider)
+NODE_OPTIONS="--openssl-legacy-provider" ng serve
 
-## Build
+# Build for production
+NODE_OPTIONS="--openssl-legacy-provider" ng build --prod
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+### GitHub Pages Deployment
 
-## Running unit tests
+```bash
+# Build and deploy to GitHub Pages
+NODE_OPTIONS="--openssl-legacy-provider" ng build --prod --base-href="/tetris-game/"
+npx angular-cli-ghpages --dir=dist/tetris-game
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## 🎯 Features
 
-## Running end-to-end tests
+- **Colorful Design**: Each tetromino piece has a unique bright color
+- **Explosive Animations**: When lines are cleared, they explode with colorful particle effects
+- **Kid-Friendly UI**: Large buttons, clear text, and Comic Sans font
+- **Responsive Design**: Works on desktop and tablet
+- **Score Tracking**: Points, level progression, and lines cleared
+- **Next Piece Preview**: Shows the upcoming tetromino
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+## 🧩 Game Architecture
 
-## Further help
+- **Models**: `tetris.model.ts` - Game state and piece definitions
+- **Service**: `tetris-game.service.ts` - Core game logic and state management
+- **Component**: `tetris-board.component.*` - Game display and user interaction
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## 🚀 Generated with [Claude Code](https://claude.ai/code)
+
+This project was created with assistance from Claude Code, featuring:
+- Complete Angular architecture
+- RxJS state management
+- CSS animations and effects
+- TypeScript game logic
+- GitHub Pages deployment ready
+
+Co-Authored-By: Claude <noreply@anthropic.com>
