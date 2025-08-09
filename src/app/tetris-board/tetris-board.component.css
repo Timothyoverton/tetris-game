@@ -51,8 +51,8 @@
 }
 
 .next-piece-cell {
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
   border-radius: 3px;
 }
 
@@ -70,8 +70,8 @@
 }
 
 .board-cell {
-  width: 25px;
-  height: 25px;
+  width: 30px;
+  height: 30px;
   border: 1px solid #ddd;
   transition: all 0.2s ease;
 }
@@ -231,12 +231,12 @@
   }
   
   .board-cell {
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
   }
   
   .next-piece-cell {
-    width: 15px;
-    height: 15px;
+    width: 18px;
+    height: 18px;
   }
 }

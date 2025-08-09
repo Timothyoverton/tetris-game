@@ -23,9 +23,9 @@
   </div>
 
   <div class="game-board">
-    <div class="board-row" *ngFor="let row of getRange(20); let rowIndex = index">
+    <div class="board-row" *ngFor="let row of getRange(30); let rowIndex = index">
       <div class="board-cell" 
-           *ngFor="let col of getRange(10); let colIndex = index"
+           *ngFor="let col of getRange(15); let colIndex = index"
            [ngStyle]="getCellStyle(rowIndex, colIndex)">
       </div>
     </div>

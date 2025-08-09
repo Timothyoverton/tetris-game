@@ -21,8 +21,8 @@ export interface GameState {
   isPaused: boolean;
 }
 
-export const BOARD_WIDTH = 10;
-export const BOARD_HEIGHT = 20;
+export const BOARD_WIDTH = 15;
+export const BOARD_HEIGHT = 30;
 
 export const TETRIS_PIECES = {
   I: {
