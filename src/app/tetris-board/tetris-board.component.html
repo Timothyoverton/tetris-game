@@ -41,22 +41,24 @@
     </div>
   </div>
 
-  <div class="game-controls">
-    <h4>Controls:</h4>
-    <p>← → Move</p>
-    <p>↓ Soft Drop</p>
-    <p>↑ Rotate</p>
-    <p>Space: Hard Drop</p>
-    <p>P: Pause</p>
-    
-    <div class="control-buttons">
-      <button (click)="startGame()" class="control-btn">New Game</button>
-      <button (click)="pauseGame()" class="control-btn">{{ gameState.isPaused ? 'Resume' : 'Pause' }}</button>
+  <div class="right-sidebar">
+    <div class="game-controls">
+      <h4>Controls:</h4>
+      <p>← → Move</p>
+      <p>↓ Soft Drop</p>
+      <p>↑ Rotate</p>
+      <p>Space: Hard Drop</p>
+      <p>P: Pause</p>
+      
+      <div class="control-buttons">
+        <button (click)="startGame()" class="control-btn">New Game</button>
+        <button (click)="pauseGame()" class="control-btn">{{ gameState.isPaused ? 'Resume' : 'Pause' }}</button>
+      </div>
     </div>
-  </div>
 
-  <div class="leaderboard-sidebar">
-    <app-leaderboard></app-leaderboard>
+    <div class="leaderboard-sidebar">
+      <app-leaderboard></app-leaderboard>
+    </div>
   </div>
 </div>
 

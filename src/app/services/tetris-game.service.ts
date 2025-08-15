@@ -23,6 +23,7 @@ export class TetrisGameService {
   
   private gameInterval: Subscription | null = null;
   private dropSpeed = 1000;
+  private gameStartTime: number = 0;
 
   constructor() {
     this.initializeGame();
@@ -40,6 +41,8 @@ export class TetrisGameService {
       isPaused: false
     };
     
+    this.dropSpeed = 1000;
+    this.gameStartTime = Date.now();
     this.spawnNewPiece();
     this.gameSubject.next(this.gameState);
   }
@@ -129,8 +132,17 @@ export class TetrisGameService {
       
       this.gameState.lines += linesCleared;
       this.gameState.score += linesCleared * 100 * this.gameState.level;
+      
+      const oldLevel = this.gameState.level;
       this.gameState.level = Math.floor(this.gameState.lines / 10) + 1;
-      this.dropSpeed = Math.max(100, 1000 - (this.gameState.level - 1) * 100);
+      
+      // Calculate new speed based on level and time
+      this.calculateGameSpeed();
+      
+      // If level increased, immediately update the game speed
+      if (this.gameState.level > oldLevel) {
+        this.updateGameSpeed();
+      }
     }
   }
 
@@ -201,9 +213,6 @@ export class TetrisGameService {
     return rotated;
   }
 
-  public dropPiece(): void {
-    this.movePiece('down');
-  }
 
   public hardDrop(): void {
     if (!this.gameState.currentPiece || this.gameState.isGameOver || this.gameState.isPaused) return;
@@ -218,5 +227,41 @@ export class TetrisGameService {
 
   public getGameState(): GameState {
     return this.gameState;
+  }
+
+  private calculateGameSpeed(): void {
+    // Base speed reduction by level (120ms per level)
+    const levelSpeedReduction = (this.gameState.level - 1) * 120;
+    
+    // Time-based speed increase (gets faster every 30 seconds)
+    const gameTimeSeconds = (Date.now() - this.gameStartTime) / 1000;
+    const timeSpeedReduction = Math.floor(gameTimeSeconds / 30) * 50;
+    
+    // Combined speed calculation with minimum of 50ms
+    this.dropSpeed = Math.max(50, 1000 - levelSpeedReduction - timeSpeedReduction);
+  }
+
+  private updateGameSpeed(): void {
+    if (this.gameInterval) {
+      // Restart the interval with new speed
+      this.gameInterval.unsubscribe();
+      this.gameInterval = interval(this.dropSpeed).subscribe(() => {
+        if (!this.gameState.isPaused && !this.gameState.isGameOver) {
+          this.dropPiece();
+        }
+      });
+    }
+  }
+
+  public dropPiece(): void {
+    // Recalculate speed on each drop for continuous time-based acceleration
+    this.calculateGameSpeed();
+    
+    // Every 50 drops, update the interval speed for time-based progression
+    if (Math.random() < 0.02) { // 2% chance per drop to update speed
+      this.updateGameSpeed();
+    }
+    
+    this.movePiece('down');
   }
 }

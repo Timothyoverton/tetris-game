@@ -224,6 +224,14 @@
   border-radius: 2px;
 }
 
+/* Right Sidebar Container */
+.right-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
 /* Leaderboard Sidebar Styles */
 .leaderboard-sidebar {
   background: rgba(255, 255, 255, 0.95);
@@ -232,8 +240,6 @@
   height: fit-content;
   max-height: 600px;
   overflow-y: auto;
-  position: sticky;
-  top: 20px;
 }
 
 /* Responsive design for smaller screens */
@@ -260,12 +266,11 @@
     order: 2;
   }
   
-  .game-controls {
+  .right-sidebar {
     order: 3;
   }
   
   .leaderboard-sidebar {
-    order: 4;
     max-height: 400px;
   }
   
