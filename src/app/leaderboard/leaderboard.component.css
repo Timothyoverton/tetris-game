@@ -1,0 +1,169 @@
+.leaderboard-container {
+  width: 100%;
+  padding: 15px;
+  font-family: Arial, sans-serif;
+}
+
+h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 15px;
+  font-size: 20px;
+}
+
+.leaderboard-actions {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.clear-btn {
+  background-color: #ff4444;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+
+.clear-btn:hover {
+  background-color: #cc3333;
+}
+
+.leaderboard-table {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.table-header {
+  display: grid;
+  grid-template-columns: 80px 1fr 100px 80px 80px 150px;
+  background-color: #4a90e2;
+  color: white;
+  font-weight: bold;
+  padding: 12px 0;
+}
+
+.table-header > div {
+  padding: 0 12px;
+  text-align: center;
+}
+
+.table-row {
+  display: grid;
+  grid-template-columns: 80px 1fr 100px 80px 80px 150px;
+  border-bottom: 1px solid #eee;
+  transition: background-color 0.2s;
+}
+
+.table-row:hover {
+  background-color: #f8f9fa;
+}
+
+.table-row:last-child {
+  border-bottom: none;
+}
+
+.table-row.top-three {
+  background-color: #fff9e6;
+}
+
+.table-row.top-three:hover {
+  background-color: #fff3cc;
+}
+
+.table-row > div {
+  padding: 12px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rank {
+  font-weight: bold;
+  color: #666;
+}
+
+.rank-number {
+  margin-right: 5px;
+}
+
+.medal {
+  font-size: 16px;
+}
+
+.name {
+  text-align: left !important;
+  justify-content: flex-start !important;
+  font-weight: 500;
+  color: #333;
+}
+
+.score {
+  font-weight: bold;
+  color: #27ae60;
+}
+
+.level, .lines {
+  color: #7f8c8d;
+}
+
+.date {
+  color: #95a5a6;
+  font-size: 12px;
+}
+
+.no-scores {
+  text-align: center;
+  padding: 40px 20px;
+  color: #666;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.no-scores p {
+  font-size: 16px;
+  margin: 0;
+}
+
+/* Sidebar compact layout */
+.table-header,
+.table-row {
+  grid-template-columns: 35px 1fr 55px 35px 35px 75px;
+  font-size: 12px;
+}
+
+.table-header > div,
+.table-row > div {
+  padding: 6px 3px;
+}
+
+.date {
+  font-size: 9px;
+}
+
+@media (max-width: 768px) {
+  .table-header,
+  .table-row {
+    grid-template-columns: 40px 1fr 60px 40px 40px 80px;
+    font-size: 13px;
+  }
+  
+  .table-header > div,
+  .table-row > div {
+    padding: 8px 4px;
+  }
+  
+  .date {
+    font-size: 10px;
+  }
+  
+  h2 {
+    font-size: 18px;
+  }
+}

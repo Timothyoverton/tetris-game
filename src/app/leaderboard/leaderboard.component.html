@@ -1,0 +1,39 @@
+<div class="leaderboard-container">
+  <h2>🏆 Top 10 Leaderboard</h2>
+  
+  <div class="leaderboard-actions">
+    <button (click)="clearLeaderboard()" class="clear-btn">Clear Leaderboard</button>
+  </div>
+
+  <div class="leaderboard-table" *ngIf="leaderboard.length > 0; else noScores">
+    <div class="table-header">
+      <div class="rank">Rank</div>
+      <div class="name">Name</div>
+      <div class="score">Score</div>
+      <div class="level">Level</div>
+      <div class="lines">Lines</div>
+      <div class="date">Date</div>
+    </div>
+    
+    <div class="table-row" *ngFor="let entry of leaderboard; let i = index" 
+         [class.top-three]="i < 3">
+      <div class="rank">
+        <span class="rank-number">{{i + 1}}</span>
+        <span class="medal" *ngIf="i < 3">
+          {{i === 0 ? '🥇' : i === 1 ? '🥈' : '🥉'}}
+        </span>
+      </div>
+      <div class="name">{{entry.name}}</div>
+      <div class="score">{{entry.score | number}}</div>
+      <div class="level">{{entry.level}}</div>
+      <div class="lines">{{entry.lines}}</div>
+      <div class="date">{{formatDate(entry.date)}}</div>
+    </div>
+  </div>
+
+  <ng-template #noScores>
+    <div class="no-scores">
+      <p>No scores yet! Play a game to get on the leaderboard.</p>
+    </div>
+  </ng-template>
+</div>

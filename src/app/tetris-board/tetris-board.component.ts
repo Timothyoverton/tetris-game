@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { TetrisGameService } from '../services/tetris-game.service';
+import { LeaderboardService } from '../services/leaderboard.service';
 import { GameState, TetrisPiece, BOARD_WIDTH, BOARD_HEIGHT } from '../models/tetris.model';
 
 @Component({
@@ -13,13 +14,20 @@ export class TetrisBoardComponent implements OnInit, OnDestroy {
   gameSubscription: Subscription | null = null;
   displayBoard: string[][] = [];
   explosionCells: Set<string> = new Set();
+  showHighScoreInput: boolean = false;
+  lastGameOverScore: number = 0;
+  hasCheckedHighScore: boolean = false;
 
-  constructor(private tetrisService: TetrisGameService) { }
+  constructor(
+    private tetrisService: TetrisGameService,
+    private leaderboardService: LeaderboardService
+  ) { }
 
   ngOnInit(): void {
     this.gameSubscription = this.tetrisService.gameState$.subscribe(state => {
       this.gameState = state;
       this.updateDisplayBoard();
+      this.checkGameOver();
     });
     
     // Subscribe to line clearing events for animation
@@ -108,12 +116,42 @@ export class TetrisBoardComponent implements OnInit, OnDestroy {
   }
 
   startGame(): void {
+    this.showHighScoreInput = false;
+    this.hasCheckedHighScore = false;
     this.tetrisService.resetGame();
     this.tetrisService.startGame();
   }
 
   pauseGame(): void {
     this.tetrisService.pauseGame();
+  }
+
+
+  private checkGameOver(): void {
+    if (this.gameState?.isGameOver && !this.hasCheckedHighScore) {
+      this.hasCheckedHighScore = true;
+      this.lastGameOverScore = this.gameState.score;
+      
+      if (this.leaderboardService.isHighScore(this.gameState.score)) {
+        this.showHighScoreInput = true;
+      }
+    }
+  }
+
+  onSubmitHighScore(playerName: string): void {
+    if (this.gameState) {
+      this.leaderboardService.addScore(
+        playerName,
+        this.gameState.score,
+        this.gameState.level,
+        this.gameState.lines
+      );
+    }
+    this.showHighScoreInput = false;
+  }
+
+  onSkipHighScore(): void {
+    this.showHighScoreInput = false;
   }
 
   getRange(n: number): number[] {

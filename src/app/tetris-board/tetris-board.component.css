@@ -1,10 +1,12 @@
 .game-container {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
+  display: grid;
+  grid-template-columns: 200px 1fr 300px;
   gap: 30px;
   padding: 20px;
   font-family: 'Comic Sans MS', cursive, sans-serif;
+  justify-items: center;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 .game-info {
@@ -222,12 +224,49 @@
   border-radius: 2px;
 }
 
+/* Leaderboard Sidebar Styles */
+.leaderboard-sidebar {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  height: fit-content;
+  max-height: 600px;
+  overflow-y: auto;
+  position: sticky;
+  top: 20px;
+}
+
 /* Responsive design for smaller screens */
+@media (max-width: 1200px) {
+  .game-container {
+    grid-template-columns: 180px 1fr 280px;
+    gap: 20px;
+  }
+}
+
 @media (max-width: 768px) {
   .game-container {
-    flex-direction: column;
-    align-items: center;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
     gap: 20px;
+    padding: 10px;
+  }
+  
+  .game-info {
+    order: 1;
+  }
+  
+  .game-board {
+    order: 2;
+  }
+  
+  .game-controls {
+    order: 3;
+  }
+  
+  .leaderboard-sidebar {
+    order: 4;
+    max-height: 400px;
   }
   
   .board-cell {

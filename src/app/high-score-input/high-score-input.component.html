@@ -1,0 +1,46 @@
+<div class="high-score-modal">
+  <div class="modal-content">
+    <h2>🎉 New High Score!</h2>
+    
+    <div class="score-details">
+      <div class="score-item">
+        <span class="label">Score:</span>
+        <span class="value">{{score | number}}</span>
+      </div>
+      <div class="score-item">
+        <span class="label">Level:</span>
+        <span class="value">{{level}}</span>
+      </div>
+      <div class="score-item">
+        <span class="label">Lines:</span>
+        <span class="value">{{lines}}</span>
+      </div>
+    </div>
+
+    <div class="name-input-section">
+      <label for="playerName">Enter your name:</label>
+      <input 
+        id="playerName"
+        type="text" 
+        [(ngModel)]="playerName" 
+        maxlength="20" 
+        placeholder="Your name..."
+        (keyup.enter)="onSubmit()"
+        autofocus>
+    </div>
+
+    <div class="button-section">
+      <button 
+        class="submit-btn" 
+        (click)="onSubmit()"
+        [disabled]="!playerName.trim()">
+        Save Score
+      </button>
+      <button 
+        class="skip-btn" 
+        (click)="onSkip()">
+        Skip
+      </button>
+    </div>
+  </div>
+</div>

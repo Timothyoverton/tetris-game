@@ -1,18 +1,24 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TetrisBoardComponent } from './tetris-board/tetris-board.component';
+import { LeaderboardComponent } from './leaderboard/leaderboard.component';
+import { HighScoreInputComponent } from './high-score-input/high-score-input.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TetrisBoardComponent
+    TetrisBoardComponent,
+    LeaderboardComponent,
+    HighScoreInputComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

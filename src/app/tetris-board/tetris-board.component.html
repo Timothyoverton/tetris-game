@@ -54,4 +54,19 @@
       <button (click)="pauseGame()" class="control-btn">{{ gameState.isPaused ? 'Resume' : 'Pause' }}</button>
     </div>
   </div>
+
+  <div class="leaderboard-sidebar">
+    <app-leaderboard></app-leaderboard>
+  </div>
 </div>
+
+<!-- High Score Input Modal -->
+<app-high-score-input 
+  *ngIf="showHighScoreInput && gameState"
+  [score]="gameState.score"
+  [level]="gameState.level"
+  [lines]="gameState.lines"
+  (submitScore)="onSubmitHighScore($event)"
+  (skipScore)="onSkipHighScore()">
+</app-high-score-input>
+
